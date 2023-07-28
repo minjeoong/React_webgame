@@ -1,0 +1,50 @@
+<!-- 원시적인 react 사용. root 에 likebutton 만들기 -->
+
+<html>
+<head>
+</head>
+<body>
+<div id="root"></div>
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+<!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+<!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+<script type="text/babel">
+  'use strict';
+
+
+
+
+  class LikeButton extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = {liked: false};
+    }
+
+    render() {
+      if (this.state.liked) {
+        return 'You liked this.';
+      }
+    //  원시적인 방법 
+    //   return React.createElement('button', {onClick: () => this.setState({liked: true})}, 'Like');
+    
+        return (
+    
+            <button onClick={() => {
+                this.setState({liked: true})
+            }}>
+             Like   
+            </button>
+            
+        );
+    }
+  }
+</script>
+<script type="text/babel">
+    // ReactDom.render(<likedButton />, document.querySelector('#root')); // react 17 버전
+    ReactDOM.createRoot(document.querySelector('#root')).render(<LikeButton/>); // react 18버전
+</script>
+</body>
+</html>
